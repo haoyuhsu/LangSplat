@@ -1,13 +1,16 @@
 #!/bin/bash
 
+dataset_path=./datasets/counter
+casename=counter
+
 # get the language feature of the scene
-python preprocess.py --dataset_name $dataset_path
+python preprocess.py --dataset_path $dataset_path --sam_ckpt_path ./ckpts/sam_vit_h_4b8939.pth
 
 # train the autoencoder
 cd autoencoder
-python train.py --dataset_name $dataset_path --encoder_dims 256 128 64 32 3 --decoder_dims 16 32 64 128 256 256 512 --lr 0.0007 --output ae_ckpt
+python train.py --dataset_path $dataset_path --dataset_name $casename --encoder_dims 256 128 64 32 3 --decoder_dims 16 32 64 128 256 256 512 --lr 0.0007 --output ae_ckpt
 # get the 3-dims language feature of the scene
-python test.py --dataset_name $dataset_path --output
+python test.py --dataset_path $dataset_path --output
 
 # ATTENTION: Before you train the LangSplat, please follow https://github.com/graphdeco-inria/gaussian-splatting
 # to train the RGB 3D Gaussian Splatting model.
