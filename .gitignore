@@ -8,4 +8,5 @@ tensorboard_3d
 **/__pycache__/
 datasets/
 ckpts/
+ckpt/
 submodules/

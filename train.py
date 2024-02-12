@@ -26,8 +26,7 @@ try:
     from torch.utils.tensorboard import SummaryWriter
     TENSORBOARD_FOUND = True
 except ImportError:
-    TENSORBOARD_FOUND = False
-    
+    TENSORBOARD_FOUND = False   
 
 
 def training(dataset, opt, pipe, testing_iterations, saving_iterations, checkpoint_iterations, checkpoint, debug_from):

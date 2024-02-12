@@ -33,6 +33,7 @@ if __name__ == '__main__':
                     default=[16, 32, 64, 128, 256, 256, 512],
                     )
     parser.add_argument('--dataset_name', type=str, required=True)
+    parser.add_argument('--output', type=str, required=True)
     args = parser.parse_args()
     dataset_path = args.dataset_path
     num_epochs = args.num_epochs
@@ -57,6 +58,8 @@ if __name__ == '__main__':
     
     encoder_hidden_dims = args.encoder_dims
     decoder_hidden_dims = args.decoder_dims
+
+    dataset_name = args.dataset_name
 
     model = Autoencoder(encoder_hidden_dims, decoder_hidden_dims).to("cuda:0")
 

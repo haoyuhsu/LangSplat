@@ -22,15 +22,19 @@ if __name__ == '__main__':
                     type=int,
                     default=[16, 32, 64, 128, 256, 256, 512],
                     )
+    parser.add_argument('--output', type=str, required=True)
     args = parser.parse_args()
     
+    dataset_path = args.dataset_path
     dataset_name = args.dataset_name
     encoder_hidden_dims = args.encoder_dims
     decoder_hidden_dims = args.decoder_dims
-    ckpt_path = f"ckpt/{dataset_name}/best_ckpt.pth"
+    ckpt_path = f"ckpt/{dataset_name}/{args.output}/best_ckpt.pth"
 
     data_dir = f"{dataset_path}/language_features"
     output_dir = f"{dataset_path}/language_features_dim3"
+
+    os.makedirs(output_dir, exist_ok=True)
 
     # copy the segmentation map
     for filename in os.listdir(data_dir):
